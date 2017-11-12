@@ -25,11 +25,13 @@
 
 // IMPORTANT
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// please uncomment only 1 choice
-//
-#define ETSI_EUROPE_REGULATION
-//#define FCC_US_REGULATION
-//#define SENEGAL_REGULATION
+
+#define ETSI_EUROPE_REGULATION 1
+#define FCC_US_REGULATION 2
+#define SENEGAL_REGULATION 3
+
+/* Set this to the right regulation from above */
+#define LORA_REGULATION FCC_US_REGULATION
 /////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 
 // IMPORTANT
@@ -42,29 +44,32 @@
 
 // IMPORTANT
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// please uncomment only 1 choice
-#define BAND868
-//#define BAND900
-//#define BAND433
+
+#define BAND868 1
+#define BAND900 2
+#define BAND433 3
+
+/* Set this to the right band from above */
+#define LORA_BAND BAND868
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifdef ETSI_EUROPE_REGULATION
+#if LORA_REGULATION = ETSI_EUROPE_REGULATION
 #define MAX_DBM 14
-#elif defined SENEGAL_REGULATION
+#elif LORA_REGULATION = SENEGAL_REGULATION
 #define MAX_DBM 10
-#elif defined FCC_US_REGULATION
+#elif LORA_REGULATION = FCC_US_REGULATION
 #define MAX_DBM 14
 #endif
 
-#ifdef BAND868
-#ifdef SENEGAL_REGULATION
+#if LORA_BAND = BAND868
+#if LORA_REGULATION = SENEGAL_REGULATION
 const uint32_t DEFAULT_CHANNEL=CH_04_868;
 #else
 const uint32_t DEFAULT_CHANNEL=CH_10_868;
 #endif
-#elif defined BAND900
+#elif LORA_BAND = BAND900
 const uint32_t DEFAULT_CHANNEL=CH_05_900;
-#elif defined BAND433
+#elif LORA_BAND = BAND433
 const uint32_t DEFAULT_CHANNEL=CH_00_433;
 #endif
 
