@@ -19,7 +19,7 @@
  *****************************************************************************
  * last update: Nov. 16th by C. Pham
  */
-#include <SPI.h>  
+//#include <SPI.h>  
 // Include the SX1272
 #include "SX1272.h"
 
