@@ -19,6 +19,7 @@
  *****************************************************************************
  * last update: Nov. 16th by C. Pham
  */
+#include <iostream>
 //#include <SPI.h>  
 // Include the SX1272
 #include "SX1272.h"
@@ -81,6 +82,12 @@ const uint32_t DEFAULT_CHANNEL=CH_00_433;
 #define PRINT_STR(fmt,param)      SerialUSB.print(param)
 #define PRINT_VALUE(fmt,param)    SerialUSB.print(param)
 #define FLUSHOUTPUT               SerialUSB.flush();
+#elif 1
+#define PRINTLN                   (std::cout << std::endl)
+#define PRINT_CSTSTR(fmt,param)   (std::cout << param)
+#define PRINT_STR(fmt,param)      (std::cout << param)
+#define PRINT_VALUE(fmt,param)    (std::cout << param)
+#define FLUSHOUTPUT               (std::cout << std::endl);
 #else
 #define PRINTLN                   Serial.println("")
 #define PRINT_CSTSTR(fmt,param)   Serial.print(F(param))
@@ -249,4 +256,12 @@ void loop(void)
       
       delay(10000);    
   }          
+}
+
+int main(void) {
+	setup();
+	while (true) {
+		loop();
+	}
+	return 0;
 }
