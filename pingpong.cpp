@@ -33,26 +33,11 @@
 #define node_addr 8
 //////////////////////////////////////////////////////////////////
 
-// we wrapped Serial.println to support the Arduino Zero or M0
-#if defined __SAMD21G18A__ && not defined ARDUINO_SAMD_FEATHER_M0
-#define PRINTLN                   SerialUSB.println("")              
-#define PRINT_CSTSTR(fmt,param)   SerialUSB.print(F(param))
-#define PRINT_STR(fmt,param)      SerialUSB.print(param)
-#define PRINT_VALUE(fmt,param)    SerialUSB.print(param)
-#define FLUSHOUTPUT               SerialUSB.flush();
-#elif 1
 #define PRINTLN                   (std::cout << std::endl)
 #define PRINT_CSTSTR(fmt,param)   (std::cout << param)
 #define PRINT_STR(fmt,param)      (std::cout << param)
 #define PRINT_VALUE(fmt,param)    (std::cout << param)
 #define FLUSHOUTPUT               (std::cout << std::endl);
-#else
-#define PRINTLN                   Serial.println("")
-#define PRINT_CSTSTR(fmt,param)   Serial.print(F(param))
-#define PRINT_STR(fmt,param)      Serial.print(param)
-#define PRINT_VALUE(fmt,param)    Serial.print(param)
-#define FLUSHOUTPUT               Serial.flush();
-#endif
 
 #define DEFAULT_DEST_ADDR 1
 
@@ -64,71 +49,8 @@ void setup()
 {
 	int e;
 
-	// Open serial communications and wait for port to open:
-#if defined __SAMD21G18A__ && not defined ARDUINO_SAMD_FEATHER_M0
-	SerialUSB.begin(38400);
-#else
-	Serial.begin(38400);
-#endif
-
 	// Print a start message
 	PRINT_CSTSTR("%s","Simple LoRa ping-pong with the gateway\n");
-
-#ifdef ARDUINO_AVR_PRO
-	PRINT_CSTSTR("%s","Arduino Pro Mini detected\n");
-#endif
-#ifdef ARDUINO_AVR_NANO
-	PRINT_CSTSTR("%s","Arduino Nano detected\n");
-#endif
-#ifdef ARDUINO_AVR_MINI
-	PRINT_CSTSTR("%s","Arduino MINI/Nexus detected\n");
-#endif
-#ifdef ARDUINO_AVR_MEGA2560
-	PRINT_CSTSTR("%s","Arduino Mega2560 detected\n");
-#endif
-#ifdef ARDUINO_SAM_DUE
-	PRINT_CSTSTR("%s","Arduino Due detected\n");
-#endif
-#ifdef __MK66FX1M0__
-	PRINT_CSTSTR("%s","Teensy36 MK66FX1M0 detected\n");
-#endif
-#ifdef __MK64FX512__
-	PRINT_CSTSTR("%s","Teensy35 MK64FX512 detected\n");
-#endif
-#ifdef __MK20DX256__
-	PRINT_CSTSTR("%s","Teensy31/32 MK20DX256 detected\n");
-#endif
-#ifdef __MKL26Z64__
-	PRINT_CSTSTR("%s","TeensyLC MKL26Z64 detected\n");
-#endif
-#ifdef ARDUINO_SAMD_ZERO
-	PRINT_CSTSTR("%s","Arduino M0/Zero detected\n");
-#endif
-#ifdef ARDUINO_AVR_FEATHER32U4
-	PRINT_CSTSTR("%s","Adafruit Feather32U4 detected\n");
-#endif
-#ifdef  ARDUINO_SAMD_FEATHER_M0
-	PRINT_CSTSTR("%s","Adafruit FeatherM0 detected\n");
-#endif
-
-// See http://www.nongnu.org/avr-libc/user-manual/using_tools.html
-// for the list of define from the AVR compiler
-
-#ifdef __AVR_ATmega328P__
-	PRINT_CSTSTR("%s","ATmega328P detected\n");
-#endif
-#ifdef __AVR_ATmega32U4__
-	PRINT_CSTSTR("%s","ATmega32U4 detected\n");
-#endif
-#ifdef __AVR_ATmega2560__
-	PRINT_CSTSTR("%s","ATmega2560 detected\n");
-#endif
-#ifdef __SAMD21G18A__
-	PRINT_CSTSTR("%s","ATSAMD21G18A detected\n");
-#endif
-#ifdef __SAM3X8E__
-	PRINT_CSTSTR("%s","SAM3X8E ARM Cortex-M3 detected\n");
-#endif
 
 	// Power ON the module
 	sx1272.ON();
