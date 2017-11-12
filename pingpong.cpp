@@ -33,12 +33,6 @@
 #define node_addr 8
 //////////////////////////////////////////////////////////////////
 
-#define PRINTLN                   (std::cout << std::endl)
-#define PRINT_CSTSTR(fmt,param)   (std::cout << param)
-#define PRINT_STR(fmt,param)      (std::cout << param)
-#define PRINT_VALUE(fmt,param)    (std::cout << param)
-#define FLUSHOUTPUT               (std::cout << std::endl);
-
 #define DEFAULT_DEST_ADDR 1
 
 uint8_t message[100];
@@ -50,25 +44,25 @@ void setup()
 	int e;
 
 	// Print a start message
-	PRINT_CSTSTR("%s","Simple LoRa ping-pong with the gateway\n");
+	std::cout << "Simple LoRa ping-pong with the gateway\n";
 
 	// Power ON the module
 	sx1272.ON();
 
 	// Set transmission mode and print the result
 	e = sx1272.setMode(loraMode);
-	PRINT_CSTSTR("%s","Setting Mode: state ");
-	PRINT_VALUE("%d", e);
-	PRINTLN;
+	std::cout << "Setting Mode: state ";
+	std::cout << e;
+	std::cout << std::endl;
 
 	// enable carrier sense
 	sx1272._enableCarrierSense=true;
 
 	// Select frequency channel
 	e = sx1272.setChannel(DEFAULT_CHANNEL);
-	PRINT_CSTSTR("%s","Setting Channel: state ");
-	PRINT_VALUE("%d", e);
-	PRINTLN;
+	std::cout << "Setting Channel: state ";
+	std::cout << e;
+	std::cout << std::endl;
 
 	// Select amplifier line; PABOOST or RFO
 #ifdef PABOOST
@@ -84,18 +78,18 @@ void setup()
 	// e = sx1272.setPower(powerLevel);
 
 	e = sx1272.setPowerDBM((uint8_t)MAX_DBM);
-	PRINT_CSTSTR("%s","Setting Power: state ");
-	PRINT_VALUE("%d", e);
-	PRINTLN;
+	std::cout << "Setting Power: state ";
+	std::cout << e;
+	std::cout << std::endl;
 
 	// Set the node address and print the result
 	e = sx1272.setNodeAddress(node_addr);
-	PRINT_CSTSTR("%s","Setting node addr: state ");
-	PRINT_VALUE("%d", e);
-	PRINTLN;
+	std::cout << "Setting node addr: state ";
+	std::cout << e;
+	std::cout << std::endl;
 
 	// Print a success message
-	PRINT_CSTSTR("%s","SX1272 successfully configured\n");
+	std::cout << "SX1272 successfully configured\n";
 
 	delay(500);
 }
@@ -114,25 +108,25 @@ void loop(void)
 
 	while (1) {
 
-			PRINT_CSTSTR("%s","Sending Ping");
-			PRINTLN;
+			std::cout << "Sending Ping";
+			std::cout << std::endl;
 
 			e = sx1272.sendPacketTimeoutACK(DEFAULT_DEST_ADDR, message, r_size);
 
 			// this is the no-ack version
 			// e = sx1272.sendPacketTimeout(DEFAULT_DEST_ADDR, message, r_size);
 
-			PRINT_CSTSTR("%s","Packet sent, state ");
-			PRINT_VALUE("%d", e);
-			PRINTLN;
+			std::cout << "Packet sent, state ";
+			std::cout << e;
+			std::cout << std::endl;
 
 			if (e==3)
-					PRINT_CSTSTR("%s","No Pong!");
+					std::cout << "No Pong!";
 
 			if (e==0)
-					PRINT_CSTSTR("%s","Pong received from gateway!");
+					std::cout << "Pong received from gateway!";
 
-			PRINTLN;
+			std::cout << std::endl;
 
 			delay(10000);
 	}
