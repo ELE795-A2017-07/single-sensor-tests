@@ -2,6 +2,7 @@
 #define LORA_H
 
 #include "config.h"
+#include "SX1272.h"
 
 #if LORA_REGULATION == ETSI_EUROPE_REGULATION
 #define MAX_DBM 14
@@ -23,5 +24,9 @@ const uint32_t DEFAULT_CHANNEL=CH_05_900;
 const uint32_t DEFAULT_CHANNEL=CH_00_433;
 #endif
 
+// LORAMODE, DEFAULT_CHANNEL
+void LoRa::init(int loraMode, int channel, int node_addr, bool paboost = true);
+void LoRa::setup_exchange(void);
+int LoRa::exchange(int dest_addr = DEFAULT_DEST_ADDR);
 
 #endif /* Guard */
