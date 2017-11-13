@@ -27,7 +27,7 @@
 
 ///////////////////////////////////////////////////////////////////
 // CHANGE HERE THE LORA MODE, NODE ADDRESS
-#define LORAMODE  1
+#define LORA_MODE  1
 #define node_addr 8
 //////////////////////////////////////////////////////////////////
 
@@ -37,11 +37,11 @@
 int main(void) {
 	int e;
 
-	LoRa::init(LORA_MODE, DEFAULT_ADDRESS, node_addr);
+	LoRa::init(LORA_MODE, DEFAULT_CHANNEL, node_addr);
 	LoRa::setup_exchange();
 	while (true) {
 		std::cout << "Sending Ping" << std::endl;
-		e = LoRa::exchange();
+		e = LoRa::exchange(DEFAULT_DEST_ADDR);
 		switch (e) {
 		case 0:
 			std::cout << "Pong received from gateway!" << std::endl;
