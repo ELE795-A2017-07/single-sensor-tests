@@ -87,7 +87,7 @@ int16_t Adc::read(bool single, uint8_t channel) {
 	//digitalRead(this->dout) should give 0
 
 	digitalWrite(this->clk, LOW);
-	for (int i = 9; i > -1; i++) {
+	for (int i = 9; i > -1; i--) {
 		digitalWrite(this->clk, HIGH);
 
 		int bit = digitalRead(this->dout);
