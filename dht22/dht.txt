@@ -1,0 +1,19 @@
+Open line is high (pull up)
+
+Start signal is sent by master: pull line low for at least 1ms
+wait 20 to 40 us
+
+sensor pulls line low for 80us
+sensor releases line (high) for 80us
+
+0 bit is:
+50us low, 26-28us high (next bit follows immediately)
+1 bit is:
+50us low, 70us high (next bit follows immediately)
+
+data is:
+8bit + 8bit + 8bit + 8bit + 8bit = 40 bits
+RHd.RHf, Td.Tf, checksum
+checksum = (RHd + RHf + Td + Tf) & 0xff
+
+Note: timing seems to all be minimum (50us may be 60us)
