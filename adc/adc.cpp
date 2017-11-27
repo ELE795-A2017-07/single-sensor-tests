@@ -22,6 +22,11 @@ Adc::~Adc(void) {
 }
 
 void Adc::on(void) {
+	pinMode(this->cs, OUTPUT);
+	pinMode(this->clk, OUTPUT);
+	pinMode(this->din, OUTPUT);
+	pinMode(this->dout, INPUT);
+
 	/* If the
 	 * device was powered up with the CS pin low, it must be
 	 * brought high and back low to initiate communication.
@@ -49,9 +54,7 @@ int16_t Adc::read(bool single, uint8_t channel) {
 		return -1;
 	}
 
-	if (!this->is_on()) {
-		this->on();
-	}
+	this->on();
 
 	//Start bit
 	digitalWrite(this->din, HIGH);
@@ -95,5 +98,6 @@ int16_t Adc::read(bool single, uint8_t channel) {
 		digitalWrite(this->clk, LOW);
 	}
 
+	this->off();
 	return data;
 }
