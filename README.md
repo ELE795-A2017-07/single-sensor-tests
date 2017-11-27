@@ -4,3 +4,5 @@ adc/:
 	Test for the ADC (MCP3008)
 dht22/:
 	Test for the DHT22 temperature and humidity sensor
+lora/:
+	Test for the Modtronix inair9b LoRa module
