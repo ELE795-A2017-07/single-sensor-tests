@@ -6,3 +6,6 @@ dht22/:
 	Test for the DHT22 temperature and humidity sensor
 lora/:
 	Test for the Modtronix inair9b LoRa module
+
+timing/:
+	Test to get an idea of the timeslices allowed for a task
