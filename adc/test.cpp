@@ -14,7 +14,7 @@ using namespace std;
 int main(void) {
 	Adc _adc = Adc(ADC_CS_PIN, ADC_DIN_PIN, ADC_DOUT_PIN, ADC_CLK_PIN, true);
 
-	int16_t data = _adc->read(true, 0);
+	int16_t data = _adc.read(true, 0);
 	cout << "data = " << hex << data << endl;
 
 	return 0;
