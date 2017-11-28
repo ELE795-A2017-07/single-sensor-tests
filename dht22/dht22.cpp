@@ -9,6 +9,7 @@
 using namespace std;
 
 const int TRIGGER_PIN = 7;
+const int DHT_PIN = 8; //BCM GPIO 3
 int bit_idx = 0;
 int nb_zero_bits = 0;
 int nb_one_bits = 0;
@@ -153,7 +154,6 @@ void format_data(int64_t data) {
 }
 
 int main(void) {
-	const int DHT_PIN = 8; //BCM GPIO 3
 	wiringPiSetup();
 
 	dht22_init(DHT_PIN);
