@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define ADC_CS_PIN   1  //BCM 18
+#define ADC_CS_PIN   22 //BCM 6
 #define ADC_DIN_PIN  12 //BCM 10
 #define ADC_DOUT_PIN 13 //BCM 9
 #define ADC_CLK_PIN  14 //BCM 11
