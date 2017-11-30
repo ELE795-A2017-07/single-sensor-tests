@@ -45,6 +45,7 @@
 #include <limits.h>
 #include <pthread.h>
 #include <poll.h>
+#include <unistd.h>
 
 #include <wiringPi.h>
 
@@ -315,12 +316,6 @@ typedef enum
     BCM2835_GPIO_FSEL_ALT5  = 0b010,   ///< Alternate function 5
     BCM2835_GPIO_FSEL_MASK  = 0b111    ///< Function select bits mask
 } bcm2835FunctionSelect;
-
-
-namespace unistd {
-	//All functions of unistd.h must be called like this: unistd::the_function()
-    #include <unistd.h>
-}
 
 
 enum Representation{
