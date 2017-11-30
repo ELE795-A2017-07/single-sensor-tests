@@ -1,3 +1,5 @@
+#include <cstdio>
+
 #include "lora.h"
 
 void LoRa::init(int loraMode, int channel, int node_addr, bool paboost) {
