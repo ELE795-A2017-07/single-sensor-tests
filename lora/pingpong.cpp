@@ -37,6 +37,8 @@
 int main(void) {
 	int e;
 
+	wiringPiSetup();
+
 	LoRa::init(LORA_MODE, DEFAULT_CHANNEL, node_addr);
 	LoRa::setup_exchange();
 	while (true) {
