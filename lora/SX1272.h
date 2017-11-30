@@ -57,8 +57,8 @@
 #define SX1276Chip  1
 // end
 
-#define SX1272_RST  7
-#define SX1272_SS 10
+#define SX1272_RST 28
+#define SX1272_SS  27
 
 #define SX1272_debug_mode 0
 
