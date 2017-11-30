@@ -15,9 +15,6 @@ int main(void) {
 	wiringPiSetup();
 	Adc _adc = Adc(ADC_CS_PIN, ADC_DIN_PIN, ADC_DOUT_PIN, ADC_CLK_PIN, true);
 
-	pinMode(10, OUTPUT);
-	digitalWrite(10, HIGH);
-
 	int16_t data;
 
 	for (int i = 0; i < 10; i++) {
