@@ -52,7 +52,7 @@ int main(void) {
 			std::cout << "No Pong!" << std::endl;
 			break;
 		}
-		delay(10000);
+		delay(1000);
 	}
 	return 0;
 }
