@@ -7,9 +7,9 @@
 using namespace std;
 
 #define ADC_CS_PIN   22 //BCM 6
-#define ADC_DIN_PIN  12 //BCM 10
-#define ADC_DOUT_PIN 13 //BCM 9
-#define ADC_CLK_PIN  14 //BCM 11
+#define ADC_CLK_PIN   0 //BCM 17
+#define ADC_DOUT_PIN  2 //BCM 27
+#define ADC_DIN_PIN   3 //BCM 22
 
 int main(void) {
 	wiringPiSetup();
