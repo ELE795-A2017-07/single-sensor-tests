@@ -46,6 +46,8 @@
 #include <pthread.h>
 #include <poll.h>
 
+#include <wiringPi.h>
+
 //modified by C. Pham to handle both RPI and RPI2
 #ifdef RASPBERRY2
 #define IOBASE   0x3F000000
@@ -329,19 +331,6 @@ enum Representation{
 	BYTE
 };
 
-typedef enum {
-	INPUT,
-	OUTPUT
-}Pinmode;
-
-typedef enum {
-	LOW = 0,
-	HIGH = 1,
-	RISING = 2,
-	FALLING = 3,
-	BOTH = 4
-}Digivalue;
-
 typedef bool boolean;
 typedef unsigned char byte;
 
@@ -446,25 +435,14 @@ class SPIPi{
 };
 
 /* Some useful arduino functions */
-void pinMode(int pin, Pinmode mode);
-void digitalWrite(int pin, int value);
-int digitalRead(int pin);
 int analogRead (int pin);
-void delay(long millis);
-void delayMicroseconds(long micros);
-uint8_t shiftIn  (uint8_t dPin, uint8_t cPin, bcm2835SPIBitOrder order);
-void shiftOut (uint8_t dPin, uint8_t cPin, bcm2835SPIBitOrder order, uint8_t val);
-void attachInterrupt(int p,void (*f)(), Digivalue m);
-void detachInterrupt(int p);
 void setup();
 void loop();
-long millis();
 
 /* Helper functions */
 int getBoardRev();
 uint32_t *mapmem(const char *msg, size_t size, int fd, off_t off);
 void setBoardRev(int rev);
-int raspberryPinNumber(int arduinoPin);
 pthread_t *getThreadIdFromPin(int pin);
 uint32_t bcm2835_peri_read(volatile uint32_t* paddr);
 uint32_t bcm2835_peri_read_nb(volatile uint32_t* paddr);

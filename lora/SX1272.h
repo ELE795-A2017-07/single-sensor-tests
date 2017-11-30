@@ -31,6 +31,7 @@
  ******************************************************************************/
 
 #include <stdint.h>
+#include <wiringPi.h>
 
 #ifdef RASPBERRY2
 #include "arduPi_pi2.h"

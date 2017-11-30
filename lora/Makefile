@@ -1,7 +1,7 @@
 PRGM := lora_pingpong
 CXX := g++
 CXXFLAGS := #-std=c++0x #-Wall -Wextra
-LDFLAGS := -lpthread
+LDFLAGS := -lpthread -lwiringPi
 SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp,%.o,$(SRC))
 DEPS := $(patsubst %.cpp,%.d,$(SRC))
