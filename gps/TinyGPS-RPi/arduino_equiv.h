@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <cmath>
 
+#include "arduPi.h"
+
 #define PI 3.1415926535897932384626433832795
 #define HALF_PI 1.5707963267948966192313216916398
 #define TWO_PI 6.283185307179586476925286766559
@@ -14,9 +16,5 @@
 #define radians(deg) ((deg)*DEG_TO_RAD)
 #define degrees(rad) ((rad)*RAD_TO_DEG)
 #define sq(x) ((x)*(x))
-
-typedef uint8_t byte;
-unsigned long millis(void);
-
 
 #endif
