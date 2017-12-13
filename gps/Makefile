@@ -1,14 +1,21 @@
 PRGM := gps_test
+OTHER_PRGMS := record_data read_examples
 CXX := g++
 CXXFLAGS := -std=c++0x -iquote TinyGPS-RPi -iquote ../common #-Wall -Wextra
 LDFLAGS := -lpthread -lwiringPi
-SRC := $(wildcard *.cpp)
+SRC := $(filter-out $(patsubst %,%.cpp,$(OTHER_PRGMS) $(PRGM)),$(wildcard *.cpp))
 OBJ := $(patsubst %.cpp,%.o,$(SRC))
 LIB_SRC := $(wildcard TinyGPS-RPi/*.cpp)
 LIB_OBJ := $(patsubst %.cpp,%.o,$(LIB_SRC))
 COMMON_OBJ := $(patsubst %.cpp,%.o,$(wildcard ../common/*.cpp))
 
-$(PRGM): $(OBJ) $(LIB_OBJ) $(COMMON_OBJ)
+$(PRGM): gps_test.o $(OBJ) $(LIB_OBJ) $(COMMON_OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+record_data: record_data.o $(OBJ) $(LIB_OBJ) $(COMMON_OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+read_examples: read_examples.o $(OBJ) $(LIB_OBJ) $(COMMON_OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 $(LIB_OBJ): %.o: %.cpp $(COMMON_OBJ)
