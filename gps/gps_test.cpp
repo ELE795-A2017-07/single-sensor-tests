@@ -2,14 +2,11 @@
 
 #include <wiringPi.h>
 
+#include "hwconfig.h"
 #include "arduPi.h"
 #include "TinyGPS.h"
 
 using namespace std;
-
-const int GPS_EN_PIN = 4; //BCM 23
-const int GPS_RXD_PIN = 15; //BCM 14
-const int GPS_TXD_PIN = 16; //BCM 15
 
 int main(void) {
 	bool valid = false;

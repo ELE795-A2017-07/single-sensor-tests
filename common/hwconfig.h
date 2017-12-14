@@ -1,6 +1,9 @@
 #ifndef HWCONFIG_H
 #define HWCONFIG_H
 
+const int GPS_EN_PIN  =  4; //BCM 23
+const int GPS_RXD_PIN = 15; //BCM 14
+const int GPS_TXD_PIN = 16; //BCM 15
 
 const int ADC_CS_PIN   = 22; //BCM 6
 const int ADC_CLK_PIN  =  0; //BCM 17
