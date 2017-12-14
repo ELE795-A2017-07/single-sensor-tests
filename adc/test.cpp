@@ -2,23 +2,18 @@
 
 #include <wiringPi.h>
 
+#include "hwconfig.h"
 #include "adc.h"
 
 using namespace std;
-
-const int ADC_CS_PIN   = 22; //BCM 6
-const int ADC_CLK_PIN  =  0; //BCM 17
-const int ADC_DOUT_PIN =  2; //BCM 27
-const int ADC_DIN_PIN  =  3; //BCM 22
 
 int main(void) {
 	wiringPiSetup();
 	int test_in[] = {TEST_CH, O3_CH, O3_REF_CH, -1};
 	Adc _adc = Adc(ADC_CS_PIN, ADC_DIN_PIN, ADC_DOUT_PIN, ADC_CLK_PIN, true);
-
+	int16_t data;
 
 #if 0
-	int16_t data;
 
 	for (int j = 0; test_in[j] > -1; j++) {
 		for (int i = 0; i < 10; i++) {
