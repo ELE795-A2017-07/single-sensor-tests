@@ -5,14 +5,15 @@ ifndef DEBUG
 	DEBUG := 0
 endif
 
-override CXXFLAGS += -std=c++0x -DDEBUG=$(DEBUG)
+override CXXFLAGS += -std=c++0x -DDEBUG=$(DEBUG) -iquote ../common
 override LDFLAGS += -lwiringPi -lpthread
 
 SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp,%.o,$(SRC))
 DEPS := $(patsubst %.cpp,%.d,$(SRC))
+COMMON_OBJ := $(patsubst %.cpp,%.o,$(wildcard ../common/*.cpp))
 
-$(PRGM): $(OBJ)
+$(PRGM): $(OBJ) $(COMMON_OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 $(OBJ): %.o: %.cpp
@@ -21,3 +22,6 @@ $(OBJ): %.o: %.cpp
 -include $(DEPS)
 %.d: %.cpp
 	$(CXX) $(CXXFLAGS) -MF"$@" -MG -MM -MP -MT"$@" -MT"$(<:.cpp=.o)" "$<"
+
+$(COMMON_OBJ):
+	$(MAKE) -f ../common/Makefile
