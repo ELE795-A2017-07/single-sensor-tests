@@ -2,15 +2,11 @@
 
 #include <wiringPi.h>
 
+#include "hwconfig.h"
 #include "adc.h"
 #include "gas_sensor_o3.h"
 
 using namespace std;
-
-const int ADC_CS_PIN   = 22; //BCM 6
-const int ADC_CLK_PIN  =  0; //BCM 17
-const int ADC_DOUT_PIN =  2; //BCM 27
-const int ADC_DIN_PIN  =  3; //BCM 22
 
 int main(void) {
 	wiringPiSetup();
