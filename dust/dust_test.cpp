@@ -2,26 +2,11 @@
 
 #include <wiringPi.h>
 
+#include "hwconfig.h"
 #include "utils.h"
 #include "adc.h"
 
 using namespace std;
-
-const int ADC_CS_PIN   = 22; //BCM 6
-const int ADC_CLK_PIN  =  0; //BCM 17
-const int ADC_DOUT_PIN =  2; //BCM 27
-const int ADC_DIN_PIN  =  3; //BCM 22
-
-const int DUST_LED_PIN =  1; //BCM 18
-
-typedef enum {
-	DUST_CH = 0,
-	UNUSED_1,
-	O3_CH,
-	O3_REF_CH,
-	SOIL_RH_CH,
-	TEST_CH = 7
-} adc_ch_t;
 
 
 /* Returns the concentration of dust particles detected by the sensor based
