@@ -6,7 +6,6 @@ SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp,%.o,$(SRC))
 COMMON_OBJ := $(patsubst %.cpp,%.o,$(wildcard ../common/*.cpp))
 
-
 .PHONY: run
 run: $(PRGM)
 	sudo ./$(PRGM)
