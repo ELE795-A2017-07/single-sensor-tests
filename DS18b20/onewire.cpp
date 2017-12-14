@@ -1,4 +1,3 @@
-#include <array>
 #include <wiringPi.h>
 
 #include "onewire.h"
