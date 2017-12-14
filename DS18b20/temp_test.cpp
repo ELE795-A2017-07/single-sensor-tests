@@ -12,12 +12,10 @@
 
 #include <wiringPi.h>
 
+#include "hwconfig.h"
 #include "onewire.h"
 
 using namespace std;
-
-
-const int TEMP_SENSOR_PIN = 26; //BCM 26
 
 
 void init(void) {

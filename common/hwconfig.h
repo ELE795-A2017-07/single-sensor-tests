@@ -9,4 +9,6 @@ const int ADC_DIN_PIN  =  3; //BCM 22
 
 const int DHT_PIN = 8; //BCM GPIO 3
 
+const int TEMP_SENSOR_PIN = 26; //BCM 26
+
 #endif /* Guard */
