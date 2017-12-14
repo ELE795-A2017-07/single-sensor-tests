@@ -9,6 +9,9 @@ LIB_SRC := $(wildcard TinyGPS-RPi/*.cpp)
 LIB_OBJ := $(patsubst %.cpp,%.o,$(LIB_SRC))
 COMMON_OBJ := $(patsubst %.cpp,%.o,$(wildcard ../common/*.cpp))
 
+.PHONY: all
+all: $(PRGM) record_data read_examples
+
 $(PRGM): gps_test.o $(OBJ) $(LIB_OBJ) $(COMMON_OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 

@@ -7,12 +7,12 @@ COMMON_OBJ := $(patsubst %.cpp,%.o,$(wildcard ../common/*.cpp))
 
 PRGM := adc_test
 
+$(PRGM): $(OBJ) $(COMMON_OBJ)
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
+
 .PHONY: run
 run: $(PRGM)
 	sudo ./$(PRGM)
-
-$(PRGM): $(OBJ) $(COMMON_OBJ)
-	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(COMMON_OBJ):
 	$(MAKE) -f ../common/Makefile

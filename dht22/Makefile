@@ -6,12 +6,13 @@ LDFLAGS := -lwiringPi -rdynamic
 OBJ := $(patsubst %.cpp,%.o,$(foreach var,$(SRC),$(notdir $(var))))
 
 
-$(OBJ): %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $^ -o $@
-
 $(PRGM): $(OBJ)
 	$(CXX) -rdynamic $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
 .PHONY: run
 run: $(PRGM)
 	sudo nice -n -20 ./$(PRGM)
+
+$(OBJ): %.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $^ -o $@
+
