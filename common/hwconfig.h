@@ -14,6 +14,6 @@ const int DUST_LED_PIN =  1; //BCM 18
 
 const int DHT_PIN = 8; //BCM GPIO 3
 
-const int TEMP_SENSOR_PIN = 26; //BCM 26
+const int TEMP_SENSOR_PIN = 25; //BCM 26
 
 #endif /* Guard */
