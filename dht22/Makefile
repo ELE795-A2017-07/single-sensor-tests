@@ -1,8 +1,8 @@
-CXX := g++
 PRGM := dht22
-SRC := dht22.cpp utils.cpp
-CXXFLAGS := -std=c++0x -I../temp/src/temp/
+CXX := g++
+CXXFLAGS := -std=c++0x -iquote ../common/
 LDFLAGS := -lwiringPi -rdynamic
+SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp,%.o,$(foreach var,$(SRC),$(notdir $(var))))
 
 
