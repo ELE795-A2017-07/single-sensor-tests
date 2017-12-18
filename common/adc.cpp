@@ -50,11 +50,10 @@ bool Adc::is_on(void) {
 
 float Adc::read(bool single, uint8_t channel) {
 	int16_t out = read_raw(single, channel);
-	std::cout << "out = " << std::hex << out << std::dec << std::endl;
-	if (out >= 0) {
-		return out * (MAX_VOLT/LSB);
+	if (out < 0) {
+		return out;
 	}
-	return -1;
+	return out * (MAX_VOLT/LSB);
 }
 
 
