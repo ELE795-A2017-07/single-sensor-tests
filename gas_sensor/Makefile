@@ -1,4 +1,4 @@
-PRGM := adc_test
+PRGM := gas_test
 CXX := g++
 CXXFLAGS := -std=c++0x -iquote ../common
 LDFLAGS := -lwiringPi
