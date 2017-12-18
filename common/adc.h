@@ -1,6 +1,8 @@
 #ifndef ADC_H
 #define ADC_H
 
+#include <cstdint>
+
 typedef enum {
 	DUST_CH = 0,
 	UNUSED_1,
@@ -9,6 +11,10 @@ typedef enum {
 	SOIL_RH_CH,
 	TEST_CH = 7
 } adc_ch_t;
+
+
+const float MAX_VOLT = 5.;
+const int LSB = 1024;
 
 
 class Adc {
@@ -24,7 +30,8 @@ public:
 	bool is_on(void);
 	void on(void);
 	void off(void);
-	int16_t read(bool single, uint8_t channel);
+	float read(bool single, uint8_t channel);
+	int16_t read_raw(bool single, uint8_t channel);
 };
 
 #endif

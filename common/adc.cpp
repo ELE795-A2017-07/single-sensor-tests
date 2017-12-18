@@ -47,7 +47,18 @@ bool Adc::is_on(void) {
 	return this->_on;
 }
 
-int16_t Adc::read(bool single, uint8_t channel) {
+
+float Adc::read(bool single, uint8_t channel) {
+	int16_t out = read_raw(single, channel);
+	std::cout << "out = " << std::hex << out << std::dec << std::endl;
+	if (out >= 0) {
+		return out * (MAX_VOLT/LSB);
+	}
+	return -1;
+}
+
+
+int16_t Adc::read_raw(bool single, uint8_t channel) {
 	int16_t data = 0;
 
 	if (channel > 7) {
