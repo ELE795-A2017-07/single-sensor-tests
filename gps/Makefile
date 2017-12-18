@@ -5,6 +5,7 @@ CXXFLAGS := -std=c++0x -iquote TinyGPS-RPi -iquote ../common #-Wall -Wextra
 LDFLAGS := -lpthread -lwiringPi
 SRC := $(filter-out $(patsubst %,%.cpp,$(OTHER_PRGMS) $(PRGM)),$(wildcard *.cpp))
 OBJ := $(patsubst %.cpp,%.o,$(SRC))
+DEPS := $(patsubst %.cpp,%.d,$(SRC))
 LIB_SRC := $(wildcard TinyGPS-RPi/*.cpp)
 LIB_OBJ := $(patsubst %.cpp,%.o,$(LIB_SRC))
 COMMON_OBJ := $(patsubst %.cpp,%.o,$(wildcard ../common/*.cpp))
@@ -23,6 +24,10 @@ read_examples: read_examples.o $(OBJ) $(LIB_OBJ) $(COMMON_OBJ)
 
 $(LIB_OBJ): %.o: %.cpp $(COMMON_OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
+
+-include $(DEPS)
+%.d: %.cpp
+	$(CXX) $(CXXFLAGS) -MF"$@" -MG -MM -MP -MT"$@" -MT"$(<:.cpp=.o)" "$<"
 
 $(COMMON_OBJ):
 	$(MAKE) -f ../common/Makefile

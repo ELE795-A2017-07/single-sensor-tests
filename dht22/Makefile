@@ -4,6 +4,7 @@ CXXFLAGS := -std=c++0x -iquote ../common/
 LDFLAGS := -lwiringPi -rdynamic
 SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp,%.o,$(foreach var,$(SRC),$(notdir $(var))))
+DEPS := $(patsubst %.cpp,%.d,$(SRC))
 
 
 $(PRGM): $(OBJ)
@@ -16,3 +17,6 @@ run: $(PRGM)
 $(OBJ): %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
+-include $(DEPS)
+%.d: %.cpp
+	$(CXX) $(CXXFLAGS) -MF"$@" -MG -MM -MP -MT"$@" -MT"$(<:.cpp=.o)" "$<"

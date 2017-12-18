@@ -15,5 +15,9 @@ $(PRGM): $(OBJ) $(COMMON_OBJ)
 run: $(PRGM)
 	sudo ./$(PRGM)
 
+-include $(DEPS)
+%.d: %.cpp
+	$(CXX) $(CXXFLAGS) -MF"$@" -MG -MM -MP -MT"$@" -MT"$(<:.cpp=.o)" "$<"
+
 $(COMMON_OBJ):
 	$(MAKE) -f ../common/Makefile
