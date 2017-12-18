@@ -9,7 +9,7 @@ DEPS := $(patsubst %.cpp,%.d,$(SRC))
 all: $(OBJ)
 
 $(OBJ): %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $^ -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 -include $(DEPS)
 %.d: %.cpp
