@@ -1,0 +1,11 @@
+MAKEDIR := $(dir $(lastword $(MAKEFILE_LIST)))
+COMMON_SRC := $(wildcard $(MAKEDIR)/*.cpp)
+COMMON_OBJ := $(patsubst %.cpp,%.o,$(COMMON_SRC))
+COMMON_DEPS := $(patsubst %.cpp,%.d,$(COMMON_SRC))
+
+$(COMMON_OBJ): %.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+-include $(COMMON_DEPS)
+%.d: %.cpp
+	$(CXX) $(CXXFLAGS) -MF"$@" -MG -MM -MP -MT"$@" -MT"$(<:.cpp=.o)" "$<"

@@ -4,9 +4,12 @@ LDFLAGS := -lwiringPi
 SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp,%.o,$(SRC))
 DEPS := $(patsubst %.cpp,%.d,$(SRC))
-COMMON_OBJ := $(patsubst %.cpp,%.o,$(wildcard ../common/*.cpp))
 
 PRGM := adc_test
+
+$(PRGM):
+
+include ../common/Makefile.include
 
 $(PRGM): $(OBJ) $(COMMON_OBJ)
 	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
@@ -18,6 +21,3 @@ run: $(PRGM)
 -include $(DEPS)
 %.d: %.cpp
 	$(CXX) $(CXXFLAGS) -MF"$@" -MG -MM -MP -MT"$@" -MT"$(<:.cpp=.o)" "$<"
-
-$(COMMON_OBJ):
-	$(MAKE) -f ../common/Makefile

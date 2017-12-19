@@ -5,18 +5,18 @@ LDFLAGS := -lpthread -lwiringPi
 SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp,%.o,$(SRC))
 DEPS := $(patsubst %.cpp,%.d,$(SRC))
-LIB_OBJ := $(patsubst %.cpp,%.o,$(wildcard ../common/*.cpp))
 
 
-$(PRGM): $(OBJ) $(LIB_OBJ)
+$(PRGM):
+
+include ../common/Makefile.include
+
+$(PRGM): $(OBJ) $(COMMON_OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 .PHONY: run
 run: $(PRGM)
 	sudo ./$(PRGM)
-
-$(LIB_OBJ):
-	$(MAKE) -f ../common/Makefile
 
 -include $(DEPS)
 $(DEPS): %.d: %.cpp
