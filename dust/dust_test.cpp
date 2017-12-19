@@ -48,20 +48,19 @@ int main(void) {
 	pinMode(DUST_LED_PIN, OUTPUT);
 
 	Adc _adc = Adc(ADC_CS_PIN, ADC_DIN_PIN, ADC_DOUT_PIN, ADC_CLK_PIN, true);
-	int16_t data;
+	float data;
 
 	for (int j = 0; j < 10; j++) {
 		data = _adc.read(true, TEST_CH);
-		cout << "Ch " << dec << TEST_CH << ": data = " << hex << data << " which should be about " << dec << data * (5/1024.) << "V" << endl;
+		cout << "Ch " << dec << TEST_CH << ": data = " << data << "V" << endl;
 	}
 
 	digitalWrite(DUST_LED_PIN, HIGH);
 	digitalWrite(DUST_LED_PIN, LOW);
 	busywait(280); //per datasheet, I_LED must be maintained for at least 280us
 
-	data = _adc.read(false, DUST_CH);
-	float voltage = data * (5/1024.);
-	cout << "Dust data = " << hex << data << " which is about " << dec << voltage << "V" << endl;
+	float voltage = _adc.read(false, DUST_CH);
+	cout << "Dust data = " << voltage << "V" << endl;
 	cout << "Which should be about " << dust_mgperm3_from_voltage(voltage) << " mg/m^3 of dust" << endl;
 
 	digitalWrite(DUST_LED_PIN, HIGH);

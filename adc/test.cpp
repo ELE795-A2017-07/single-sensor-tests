@@ -11,7 +11,7 @@ int main(void) {
 	wiringPiSetup();
 	int test_in[] = {TEST_CH, O3_CH, O3_REF_CH, -1};
 	Adc _adc = Adc(ADC_CS_PIN, ADC_DIN_PIN, ADC_DOUT_PIN, ADC_CLK_PIN, true);
-	int16_t data;
+	float data;
 
 #if 0
 
@@ -33,7 +33,7 @@ int main(void) {
 #else
 	for (int j = 0; j < 10; j++) {
 		data = _adc.read(true, TEST_CH);
-		cout << "Ch " << dec << TEST_CH << ": data = " << hex << data << " which should be about " << dec << data * (5/1024.) << "V" << endl;
+		cout << "Ch " << dec << TEST_CH << ": data = " << data << "V" << endl;
 	}
 #endif
 
