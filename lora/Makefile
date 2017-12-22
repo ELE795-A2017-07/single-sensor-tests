@@ -20,4 +20,4 @@ run: $(PRGM)
 
 -include $(DEPS)
 $(DEPS): %.d: %.cpp
-	$(CXX) $(CXXFLAGS) -MF"$@" -MG -MM -MP -MT"$@" -MT"$(subst $(SRC_DIR),$(OBJ_DIR),$(<:.cpp=.o))" "$<"
+	$(CXX) $(CXXFLAGS) -MF"$@" -MG -MM -MP -MT"$@" -MT"$(<:.cpp=.o)" "$<"
